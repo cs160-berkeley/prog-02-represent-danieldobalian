@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Represent</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_activity_welcome">activity_welcome</string>
+    <string name="title_activity_rep">rep</string>
+    <string name="title_activity_election_data">electionData</string>
+    <string name="cards_title">Sen. D.Feinstein</string>
+    <string name="expansion_title">Democratic Party </string>
+</resources>

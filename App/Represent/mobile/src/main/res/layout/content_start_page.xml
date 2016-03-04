@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#303030"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="me.danieldobalian.represent.StartPage"
+    tools:showIn="@layout/activity_start_page">
+
+
+    <ImageView
+        android:layout_width="231dp"
+        android:layout_height="158dp"
+        android:id="@+id/america"
+        android:background="@drawable/america"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/zipPrompt"
+        android:layout_below="@+id/america"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to Represent"
+        android:typeface="normal"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:layout_marginTop="30px" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Location"
+        android:id="@+id/locationButton"
+        android:background="#2B98EC"
+        android:textColor="#303030"
+        android:paddingLeft="200px"
+        android:paddingRight="200px"
+        android:layout_above="@+id/zipButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Zip"
+        android:id="@+id/zipButton"
+        android:background="@drawable/button_boarder"
+        android:textColor="#2B98EC"
+        android:paddingLeft="300px"
+        android:paddingRight="300px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/locationButton"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:text="Let us help you find your Congressional Representative"
+        android:typeface="normal"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
