@@ -18,16 +18,17 @@ Phone Screenshots
 <img src="screenshots/phone/zip.png" height="400" alt="Screenshot"/>
 
 <img src="screenshots/phone/phone_rep.png" height="400" alt="Screenshot"/>
+
 <img src="screenshots/phone/phone_detailed_D.png" height="400" alt="Screenshot"/>
 <img src="screenshots/phone/phone_detailed_I.png" height="400" alt="Screenshot"/>
 <img src="screenshots/phone/phone_detailed_R.png" height="400" alt="Screenshot"/>
 
 Watch Screenshots
 
-<img src="screenshots/watch/watch_intro.png" height="400" alt="Screenshot"/>
+<img src="screenshots/watch/watch_intro.png" height="350" alt="Screenshot"/>
 
-<img src="screenshots/watch/watch_rep.png" height="400" alt="Screenshot"/>
-<img src="screenshots/watch/2012.png" height="400" alt="Screenshot"/>
+<img src="screenshots/watch/watch_rep.png" height="350" alt="Screenshot"/>
+<img src="screenshots/watch/2012.png" height="350" alt="Screenshot"/>
 
 Wireframe Screenshot
 
