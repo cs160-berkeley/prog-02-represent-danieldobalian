@@ -16,6 +16,7 @@ Phone Screenshots
 
 <img src="screenshots/phone/phone_intro.png" height="400" alt="Screenshot"/>
 <img src="screenshots/phone/zip.png" height="400" alt="Screenshot"/>
+
 <img src="screenshots/phone/phone_rep.png" height="400" alt="Screenshot"/>
 <img src="screenshots/phone/phone_detailed_D.png" height="400" alt="Screenshot"/>
 <img src="screenshots/phone/phone_detailed_I.png" height="400" alt="Screenshot"/>
@@ -24,8 +25,13 @@ Phone Screenshots
 Watch Screenshots
 
 <img src="screenshots/watch/watch_intro.png" height="400" alt="Screenshot"/>
+
 <img src="screenshots/watch/watch_rep.png" height="400" alt="Screenshot"/>
 <img src="screenshots/watch/2012.png" height="400" alt="Screenshot"/>
+
+Wireframe Screenshot
+
+<img src="screenshots/wireframes.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
