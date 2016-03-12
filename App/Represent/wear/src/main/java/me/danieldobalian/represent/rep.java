@@ -22,6 +22,9 @@ import android.support.wearable.view.GridViewPager;
 import android.view.View.OnApplyWindowInsetsListener;
 import android.view.WindowInsets;
 
+/**
+ * Created by danieldobalian on 3/3/16.
+ */
 public class rep extends Activity {
 
     private TextView mTextView;
@@ -36,10 +39,10 @@ public class rep extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rep);
 
-
         // Shake Code
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(mSensorListener, mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
         mAccel = 0.00f;
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
         mAccelLast = SensorManager.GRAVITY_EARTH;
@@ -52,11 +55,14 @@ public class rep extends Activity {
         final String inputCode;
 
         if (extras != null) {
-            inputCode = intent.getStringExtra("inputCode");
+            inputCode = intent.getStringExtra("data");
         }
 
         /* API CALL */
         /* Use Zip Code to Query API for Names, 2012 Data */
+
+
+
 
         // Setting up the listview
         // Using temporary data
@@ -65,6 +71,7 @@ public class rep extends Activity {
 
         final Resources res = getResources();
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
+
         pager.setOnApplyWindowInsetsListener(new OnApplyWindowInsetsListener() {
             @Override
             public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
@@ -73,26 +80,18 @@ public class rep extends Activity {
                 int colMargin = res.getDimensionPixelOffset(round ?
                         R.dimen.page_column_margin_round : R.dimen.page_column_margin);
                 pager.setPageMargins(rowMargin, colMargin);
-                pager.onApplyWindowInsets(insets);
-
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO Auto-generated method stub
-
-                    Log.v("T", "Detailed button clicked");
-                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-                    sendIntent.putExtra("command", "detailed");
-                    sendIntent.putExtra("data", "Senator Dianne Feinstein (D)");
-                    startService(sendIntent);
-                    Log.v("T", "called start service");
-                    }
-                });
-
                 return insets;
             }
         });
-        pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+        Log.v("v", "INside rep data: " + intent.getStringExtra("data"));
+        pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager(),
+                intent.getStringExtra("data")));
+        pager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("v", "clicked card");
+            }
+        });
         DotsPageIndicator dotsPageIndicator = (DotsPageIndicator) findViewById(R.id.page_indicator);
         dotsPageIndicator.setPager(pager);
 
@@ -104,7 +103,7 @@ public class rep extends Activity {
                 Log.v("T", "Clicked on election 2012 data button");
                 Intent election = new Intent(rep.this,
                         electionData.class);
-                election.putExtra("inputCode", intent.getStringExtra("inputCode"));
+                election.putExtra("data", intent.getStringExtra("data"));
                 Log.v("T", "Created Intent");
                 startActivity(election);
             }
@@ -119,8 +118,25 @@ public class rep extends Activity {
                 Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
                 sendIntent.putExtra("command", "detailed");
 
+                /* load string as following (county|name...|obama%|romney%): "county|name|33.6|55.3" */
+                /* name = "|display name, party, term date, bioID|" */
+                String delims = "[|]";
+                String delimsName = "[,]";
+
+                String[] dataSplit = intent.getStringExtra("data").split(delims);
+                String[] nameSplit = dataSplit[1].split(delimsName);
+
+                Log.v("v", "Incoming Data: " + intent.getStringExtra("data"));
+                Log.v("v", "Incoming Split Data: " + nameSplit[0]);
+
+                String toPhone = "";
+                toPhone += nameSplit[0] + "|";
+                toPhone += nameSplit[1] + "|";
+                toPhone += nameSplit[2] + "|";
+                toPhone += nameSplit[3];
+
                 /* API: Will send index of one picked */
-                sendIntent.putExtra("data", "Senator Dianne Feinstein (D)");
+                sendIntent.putExtra("data", toPhone);
                 startService(sendIntent);
                 Log.v("T", "called start service");
             }

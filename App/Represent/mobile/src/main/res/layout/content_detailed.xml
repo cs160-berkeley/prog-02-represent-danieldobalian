@@ -42,7 +42,7 @@
         android:textSize="34px"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/nameView"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
         android:textSize="34px"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/backgroundBody"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
         android:textSize="34px"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/comBody"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"

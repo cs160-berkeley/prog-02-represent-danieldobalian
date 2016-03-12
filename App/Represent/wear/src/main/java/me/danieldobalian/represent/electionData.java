@@ -38,7 +38,12 @@ public class electionData extends Activity {
         mAccelLast = SensorManager.GRAVITY_EARTH;
 
         Intent thisIntent = getIntent();
-        final String zip = thisIntent.getStringExtra("inputCode");
+        final String data = thisIntent.getStringExtra("data");
+        String delims = "[|]";
+        String[] dataSplit = data.split(delims);
+        String romneyP = dataSplit[dataSplit.length-1];
+        String obamaP = dataSplit[dataSplit.length-2];
+        String countyP = dataSplit[0];
 
         /* Api Call to get 2012 data */
         dist = (TextView) findViewById(R.id.district);
@@ -46,16 +51,16 @@ public class electionData extends Activity {
         obama = (TextView) findViewById(R.id.obamaText);
         goBack = (Button) findViewById(R.id.back);
 
-        romney.setText("Romney\t\t\t\t47%");
-        obama.setText("Obama\t\t\t\t\t53%");
-        dist.setText("Zip Code: " + zip);
+        romney.setText("Romney\t\t\t\t" + romneyP + "%");
+        obama.setText("Obama\t\t\t\t\t" + obamaP + "%");
+        dist.setText("County: " + countyP);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent back = new Intent(electionData.this,
                         rep.class);
-                back.putExtra("inputCode", zip);
+                back.putExtra("data", data);
                 startActivity(back);
             }
 

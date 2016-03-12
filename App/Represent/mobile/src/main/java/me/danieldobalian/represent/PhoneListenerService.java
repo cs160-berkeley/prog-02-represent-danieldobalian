@@ -11,7 +11,11 @@ import android.widget.Toast;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 /**
  * Created by danieldobalian on 3/3/16.
@@ -37,7 +41,14 @@ public class PhoneListenerService extends WearableListenerService {
             Intent intent = new Intent(this, Detailed.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("name", value);
+
+            String delims = "[|]";
+            String [] splitData = value.split(delims);
+
+            intent.putExtra("name", splitData[0]);
+            intent.putExtra("party", splitData[1]);
+            intent.putExtra("term", splitData[2]);
+            intent.putExtra("bioID", splitData[3]);
 
             startActivity(intent);
 
@@ -52,7 +63,29 @@ public class PhoneListenerService extends WearableListenerService {
             Intent intent = new Intent(this, RepView.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
-            intent.putExtra("inputCode", value);
+
+            /* Place holder so Java doesn't complain */
+
+            String randomZip = "92867";
+            try {
+                InputStream is = context.getAssets().open("zip.txt");
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String temp = new String(buffer, "UTF-8");
+                String[] zips = temp.split("\\s+");
+
+                Random rand = new Random();
+                randomZip = zips[rand.nextInt(zips.length)];
+                Log.v("v", "Random Zip: " + randomZip);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            while(randomZip.length() != 5) {
+                randomZip = "0" + randomZip;
+            }
+            intent.putExtra("inputCode", randomZip);
 
             startActivity(intent);
 
